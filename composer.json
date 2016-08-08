@@ -1,5 +1,5 @@
 {
-	"name": "cmsexperts/responiveimages",
+	"name": "cmsexperts/responsiveimages",
 	"type": "typo3-cms-extension",
 	"description": "Allows to select multiple alternative files for a sys_file_reference.",
 	"homepage": "https://github.com/cmsexperts/unlocalizedcrop",
