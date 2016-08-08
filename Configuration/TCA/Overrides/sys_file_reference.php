@@ -6,6 +6,7 @@ call_user_func(function () {
     $additionalColumn = [
         'alternativefile' => [
             'label' => 'Choose alternative files',
+            // hide when referenced from another sys_file_reference
             'displayCond' => 'FIELD:tablenames:!=:sys_file_reference',
             'l10n_mode' => 'exclude',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
@@ -18,6 +19,8 @@ call_user_func(function () {
         ],
         'alternativetag' => [
             'label' => 'Label (e.g. "media queries")',
+            // only show when referenced from another sys_file_reference
+            'displayCond' => 'FIELD:tablenames:=:sys_file_reference',
             'config' => [
                 'type' => 'select',
                 'items' => [

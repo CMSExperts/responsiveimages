@@ -5,7 +5,13 @@ for references.
 
 ## When do I need this extension?
 
-Imagine you want to have a different crop 
+Imagine you want to have a different crop setting of an image or even completely different images for an image when
+outputting the frontend.
+
+The extension adds an additional field to select alternative images and set them with a tag, so it can be reused
+in the frontend.
+
+Also, there is a Fluid ViewHelper to use the functionality directly.
 
 ## How to install this extension?
 

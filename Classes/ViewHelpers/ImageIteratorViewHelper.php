@@ -92,7 +92,7 @@ class ImageIteratorViewHelper extends AbstractViewHelper implements CompilableIn
         $alternativeFiles = $GLOBALS['TSFE']->sys_page->getFileReferences('sys_file_reference', 'alternativefile', $originalRecord);
         $sortedAlternativeFiles = [];
         foreach ($alternativeFiles as $alternativeFile) {
-            $label = $alternativeFile->getProperty('alternativelabel');
+            $label = $alternativeFile->getProperty('alternativetag');
             $sortedAlternativeFiles[$label] = $alternativeFile;
         }
 
