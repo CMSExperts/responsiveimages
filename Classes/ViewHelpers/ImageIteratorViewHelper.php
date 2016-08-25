@@ -26,16 +26,19 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
  * = Examples =
  *
  * <code>
- *     <responseiveimages:imageiterator file="{yourFileReference}" as="alternativeFiles">
- *          <picture>
- *              <item><f:uri.image src="{yourFileReference}"></item>
- *              <item><f:uri.image src="{yourFileReference}" class="xlarge"></item>
- *          </picture>
- *      </responsiveimages:imageiterator>
+ *     <picture>
+ *          <responseiveimages:imageiterator file="{yourFileReference}" as="alternativeFiles">
+ *              <f:for each="{alternativeFiles}" as="alternativeFile">
+ *                  <source media="(min-width: breakpoint)" srcset="{f:uri.image(src: alternativeFile.uid, treatIdAsReference: 1)}" />
+ *              </f:for>
+ *          </responsiveimages:imageiterator>
+ *          <img class="{class}" alt="{alternative}" title="{title}" srcset="{f:uri.image(src:'{file}',treatIdAsReference:1,height: '{height}', width: '{width}', maxHeight: '{maxHeight}', maxWidth: '{maxWidth}')}" /
+ *      </picture>
  * </code>
  * <output>
  *      <picture>
- *          <img alt="alt text" src="../typo3conf/ext/myext/Resources/Public/typo3_logo.png" />
+ *         <source media="(min-width: breakpoint)" srcset="../imageurl.png" />
+ *         <img class="" alt="" title="" srcset="../imageurl.png">
  *      </picture>
  * </output>
  */
