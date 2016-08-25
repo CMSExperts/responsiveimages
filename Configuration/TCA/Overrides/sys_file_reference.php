@@ -25,7 +25,7 @@ call_user_func(function () {
                 'type' => 'select',
                 'items' => [
                     ['Extra Large', 'xlarge'],
-                    ['Small', 'large'],
+                    ['Large', 'large'],
                     ['Medium', 'medium'],
                     ['Small', 'small'],
                     ['Extra Small', 'xsmall']
