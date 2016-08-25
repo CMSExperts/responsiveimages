@@ -15,6 +15,7 @@ namespace CMSExperts\Responsiveimages\ViewHelpers;
  */
 
 use TYPO3\CMS\Core\Resource\AbstractFile;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
@@ -46,9 +47,9 @@ class ImageIteratorViewHelper extends AbstractViewHelper implements CompilableIn
     public function initializeArguments()
     {
         parent::initializeArguments();
-        $this->registerArgument('file', AbstractFile::class, 'the file reference to be processed', true);
+        $this->registerArgument('file', FileInterface::class, 'the file reference to be processed', true);
         $this->registerArgument('as', 'string', 'alternative files', false, 'alternatives');
-        $this->registerArgument('order', 'array', 'the ordering of the items', false, ['xlarge', 'large', 'medium', 'small', 'xsmall']);
+        $this->registerArgument('order', 'array', 'the ordering of the items', false, ['xsmall', 'small', 'medium', 'large', 'xlarge']);
     }
 
     /**
@@ -100,21 +101,19 @@ class ImageIteratorViewHelper extends AbstractViewHelper implements CompilableIn
         // from bottom to top
         $ordering = array_flip($ordering);
         $lastFile = $file;
-        foreach ($ordering as $order) {
-            if ($sortedAlternativeFiles[$order]) {
-                $finalOrderings[$order] = $sortedAlternativeFiles[$order];
+        foreach ($ordering as $orderLabel => $order) {
+            if ($sortedAlternativeFiles[$orderLabel]) {
+                $finalOrderings[$order] = $sortedAlternativeFiles[$orderLabel];
                 // store it in case the next item is empty, so this one is used as well.
-                $lastFile = $sortedAlternativeFiles[$order];
+                $lastFile = $sortedAlternativeFiles[$orderLabel];
             } else {
                 $finalOrderings[$order] = $lastFile;
             }
         }
 
-        $finalOrderings = array_flip($finalOrderings);
-
         $templateVariableContainer = $renderingContext->getTemplateVariableContainer();
         $templateVariableContainer->add($fileNames, $finalOrderings);
-        $output = $renderChildrenClosure;
+        $output = $renderChildrenClosure();
         $templateVariableContainer->remove($fileNames);
 
         return $output;
