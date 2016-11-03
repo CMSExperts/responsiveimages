@@ -12,6 +12,9 @@ call_user_func(function () {
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'alternativefile',
                 [
+                    'foreign_record_defaults' => [
+                        'tablenames' => 'sys_file_reference'
+                    ],
                     'foreign_types' => $GLOBALS['TCA']['tt_content']['columns']['assets']['config']['foreign_types']
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
