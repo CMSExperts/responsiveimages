@@ -52,10 +52,10 @@ class UserFileInlineLabelService
         }
 
         // In case of a group field uid_local has the table_uid|label syntax
-        $tableAndUid = array_shift(GeneralUtility::trimExplode('|', $params['row']['uid_local'], true, 2));
-        $fileInfo = BackendUtility::splitTable_Uid($tableAndUid);
-        $fileRecord = BackendUtility::getRecord($fileInfo[0], $fileInfo[1]);
-
+        $fileRecord = reset($params['row']['uid_local']);
+        if (!empty($fileRecord)) {
+            $fileRecord = $fileRecord['row'];
+        }
         // Configuration
         $title = array();
         foreach ($sysFileFields as $field) {
