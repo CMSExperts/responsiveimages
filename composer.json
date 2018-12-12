@@ -11,7 +11,7 @@
 		"fabpot/php-cs-fixer": "*"
 	},
 	"replace": {
-		"responiveimages": "*"
+		"responsiveimages": "*"
 	},
 	"autoload": {
 		"psr-4": {
