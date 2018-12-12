@@ -16,7 +16,7 @@ Also, there is a Fluid ViewHelper to use the functionality directly.
 ## How to install this extension?
 
 You can set this up via composer (composer require cmsexperts/responsiveimages) or via TER (extension name "responsiveimages"),
-it runs with TYPO3 v7 and TYPO3 v8.
+it runs with TYPO3 v7, v8 and v9.
 
 ## License
 
