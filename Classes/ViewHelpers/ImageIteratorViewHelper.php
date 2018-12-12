@@ -16,9 +16,7 @@ namespace CMSExperts\Responsiveimages\ViewHelpers;
 
 use TYPO3\CMS\Core\Resource\AbstractFile;
 use TYPO3\CMS\Core\Resource\FileInterface;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Fetches alternative images to be rendered inside an <img> tag or <picture> tag.
@@ -42,8 +40,11 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
  *      </picture>
  * </output>
  */
-class ImageIteratorViewHelper extends AbstractViewHelper implements CompilableInterface
+class ImageIteratorViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+    protected $escapeChildren = false;
+    protected $escapeOutput = false;
+
     /**
      * Initialize arguments.
      */
@@ -53,20 +54,6 @@ class ImageIteratorViewHelper extends AbstractViewHelper implements CompilableIn
         $this->registerArgument('file', FileInterface::class, 'the file reference to be processed', true);
         $this->registerArgument('as', 'string', 'alternative files', false, 'alternatives');
         $this->registerArgument('order', 'array', 'the ordering of the items', false, ['xsmall', 'small', 'medium', 'large', 'xlarge']);
-    }
-
-    /**
-     * Get alternative files
-     *
-     * @return string the contents of the viewhelper
-     */
-    public function render()
-    {
-        return static::renderStatic(
-            $this->arguments,
-            $this->buildRenderChildrenClosure(),
-            $this->renderingContext
-        );
     }
 
     /**
@@ -114,7 +101,7 @@ class ImageIteratorViewHelper extends AbstractViewHelper implements CompilableIn
             }
         }
 
-        $templateVariableContainer = $renderingContext->getTemplateVariableContainer();
+        $templateVariableContainer = $renderingContext->getVariableProvider();
         $templateVariableContainer->add($fileNames, $finalOrderings);
         $output = $renderChildrenClosure();
         $templateVariableContainer->remove($fileNames);
