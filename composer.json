@@ -2,8 +2,8 @@
 	"name": "cmsexperts/responsiveimages",
 	"type": "typo3-cms-extension",
 	"description": "Allows to select multiple alternative files for a sys_file_reference.",
-	"homepage": "https://github.com/cmsexperts/unlocalizedcrop",
-	"license": ["GPL-2.0+"],
+	"homepage": "https://github.com/cmsexperts/responsiveimages",
+	"license": ["GPL-2.0-or-later"],
 	"require": {
 		"typo3/cms-core": ">7.6.0 <8.9.99"
 	},
@@ -11,7 +11,12 @@
 		"fabpot/php-cs-fixer": "*"
 	},
 	"replace": {
-		"responiveimages": "*"
+		"typo3-ter/responiveimages": "*"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "responsiveimages"
+		}
 	},
 	"autoload": {
 		"psr-4": {
